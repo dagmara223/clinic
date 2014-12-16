@@ -1,0 +1,52 @@
+<%= form_for @visit, :html => { :class => "form-horizontal visit" } do |f| %>
+
+    <% if @visit.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@visit.errors.count, "error") %> prohibited this visit from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @visit.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :doctor_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :doctor_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@visit[:doctor_id]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :patient_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :patient_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@visit[:patient_id]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :price, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :price, :class => 'form-control' %>
+    </div>
+    <%= error_span(@visit[:price]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'form-control' %>
+    </div>
+    <%= error_span(@visit[:description]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            visits_path, :class => 'btn btn-default' %>
+
+<% end %>
